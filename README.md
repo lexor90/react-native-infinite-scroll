@@ -3,6 +3,10 @@
 React native infinite scroll component for Android & iOS.
 Tested with Android 4.1+ and iOS 10.
 
+## Install
+
+    npm install --save react-native-infinite-scroll
+
 ## Usage
 ```js
 <InfiniteScroll
