@@ -1,6 +1,7 @@
 # Infinite Scroll
 
 React native infinite scroll component for Android & iOS.
+
 Tested with Android 4.1+ and iOS 10.
 
 ## Install
@@ -10,8 +11,9 @@ Tested with Android 4.1+ and iOS 10.
 ## Usage
 ```js
 <InfiniteScroll
-	onLoadMoreAsync={this.loadMorePage()}
-	horizontal={false}  //true - if you want in horizontal
+   // make sure to use a function signature, not this.loadMorePages()!
+	onLoadMoreAsync={this.loadMorePages}
+	horizontal={false}  // true - if you want in horizontal
 	style={styles.scrollView}
 	{...prop}
 	>
@@ -23,14 +25,11 @@ Tested with Android 4.1+ and iOS 10.
 ### Example
 
 ```js
-var React = require('react');
-var {
-	Text,
-	ListView
-} = require('react-native');
-var InfiniteScroll = require('infinite-scroll-x');
+import React, { Component } from 'react';
+import { Text, ListView } from 'react-native';
+import InfiniteScroll from 'react-native-infinite-scroll';
 
-var Example = React.createClass({
+class Example extends Component ({
 	getInitialState(){
 		var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 		var rows = ["China","Korea","Singapore","Malaysia"]
@@ -52,22 +51,22 @@ var Example = React.createClass({
 	render(){
 		return (
 			<InfiniteScroll
-			horizontal={false}	//true - if you want in horizontal
-			onLoadMoreAsync={this.loadMorePage()}
-      distanceFromEnd={10} // when to load new content (distance in density-independent pixels)
-			style={styles.scrollView}>
-			          <ListView
+			  horizontal={false}	//true - if you want in horizontal
+			  onLoadMoreAsync={this.loadMorePage}
+			  distanceFromEnd={10} // distance in density-independent pixels from the right end
+			  style={styles.scrollView}>
+			    <ListView
 					enableEmptySections={true}
 					dataSource={this.state.dataSource}
 					renderRow={(data)=><Text>{data}</Text>}
-					/>
-		        </InfiniteScroll>
+				/>
+			</InfiniteScroll>
 		);
 	}
 });
 
 
-module.exports = Example
+export default Example;
 ```
 
 ### API
@@ -76,7 +75,7 @@ You can pass any [ScrollView](https://facebook.github.io/react-native/docs/scrol
 
 Plus you can provide the following:
 
-* `onLoadMoreAsync` [Function] *no default* callback to be executed whenever we reach the end of our scrolling area (the end is not represented by the right border but it's the right border - offset defined by `distanceFromEnd`)
+* `onLoadMoreAsync` [Function] *no default* reference callback to be executed whenever we reach the end of our scrolling area (the end is not represented by the right border but it's the right border - offset defined by `distanceFromEnd`)
 * `distanceFromEnd` [Number] *10* the distance we should call `onLoadMoreAsync` before to reach the right border, useful to get the content before the user hits the end (causing it to stop scrolling while content is loading). You should calculate this with regard to the needed time to render new content (network latency/computing time) and estimate your average item size. The right amount of dp is up to you.
 
 ## Credits
