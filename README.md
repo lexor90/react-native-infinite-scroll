@@ -12,12 +12,12 @@ Tested with Android 4.1+ and iOS 10.
 ```js
 <InfiniteScroll
    // make sure to use a function signature, not this.loadMorePages()!
-	onLoadMoreAsync={this.loadMorePages}
-	horizontal={false}  // true - if you want in horizontal
-	style={styles.scrollView}
-	{...prop}
-	>
-{...children}
+  onLoadMoreAsync={this.loadMorePages}
+  horizontal={false}  // true - if you want in horizontal
+  style={styles.scrollView}
+  {...prop}
+>
+  {...children}
 </InfiniteScroll>
 ```
 
@@ -30,39 +30,39 @@ import { Text, ListView } from 'react-native';
 import InfiniteScroll from 'react-native-infinite-scroll';
 
 class Example extends Component ({
-	getInitialState(){
-		var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-		var rows = ["China","Korea","Singapore","Malaysia"]
-		return {
-			data: rows,
-			dataSource: ds.cloneWithRows(rows)
-		}
-	},
-	loadMorePage(){
-		//here .. collect the data from server somehow
-		let new_data = ['Japan','Myanmar','India','Thailand'];
-		let rows = this.state.data;
-		rows.push.apply(rows, new_data);
-		this.setState({
-			data: rows,
-			dataSource: this.state.dataSource.cloneWithRows(rows)
-		});
-	},
-	render(){
-		return (
-			<InfiniteScroll
-			  horizontal={false}	//true - if you want in horizontal
-			  onLoadMoreAsync={this.loadMorePage}
-			  distanceFromEnd={10} // distance in density-independent pixels from the right end
-			  style={styles.scrollView}>
-			    <ListView
-					enableEmptySections={true}
-					dataSource={this.state.dataSource}
-					renderRow={(data)=><Text>{data}</Text>}
-				/>
-			</InfiniteScroll>
-		);
-	}
+  getInitialState(){
+    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    var rows = ["China","Korea","Singapore","Malaysia"]
+    return {
+      data: rows,
+      dataSource: ds.cloneWithRows(rows)
+    }
+  },
+  loadMorePage(){
+    //here .. collect the data from server somehow
+    let new_data = ['Japan','Myanmar','India','Thailand'];
+    let rows = this.state.data;
+    rows.push.apply(rows, new_data);
+    this.setState({
+      data: rows,
+      dataSource: this.state.dataSource.cloneWithRows(rows)
+    });
+  },
+  render(){
+    return (
+      <InfiniteScroll
+        horizontal={false}  //true - if you want in horizontal
+        onLoadMoreAsync={this.loadMorePage}
+        distanceFromEnd={10} // distance in density-independent pixels from the right end
+        style={styles.scrollView}>
+          <ListView
+          enableEmptySections={true}
+          dataSource={this.state.dataSource}
+          renderRow={(data)=><Text>{data}</Text>}
+        />
+      </InfiniteScroll>
+    );
+  }
 });
 
 
