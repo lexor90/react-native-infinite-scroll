@@ -1,7 +1,7 @@
 {
   "name": "react-native-infinite-scroll",
-  "version": "1.0.5",
-  "description": "Infinite Scroll component for React Native",
+  "version": "1.0.6",
+  "description": "Infinite Scroll component for React Native (iOS & Android)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,8 +18,8 @@
     "native",
     "react-native",
     "end less",
-		"ScrollView",
-		"react native",
+    "ScrollView",
+    "react native",
     "infinite scroll view react native"
   ],
   "author": "Alessandro Agosto",
