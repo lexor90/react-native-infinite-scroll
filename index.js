@@ -6,6 +6,10 @@ import {
 } from 'react-native';
 
 export default class InfiniteScroll extends Component {
+
+    scrollTo(params) {
+        this.scrollView.scrollTo(params);
+    }
   
     state = {
       distanceFromEnd: 10
@@ -73,6 +77,7 @@ export default class InfiniteScroll extends Component {
         automaticallyAdjustContentInsets={false}
         onScroll={self._handleScroll.bind(self)}
         scrollEventThrottle={200}
+        ref={ref => this.scrollView = ref}
         >
           {this.props.children}
         </ScrollView>
